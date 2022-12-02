@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //封装队列类(基于链表实现)
+      function Queue() {
+        //属性
+        this.items = [];
+        //方法
+        // 1.将元素加入到队列中
+        Queue.prototype.enqueue = function (element) {
+          this.items.push(element);
+        };
+        // 2.从队列中删除前端元素
+        Queue.prototype.dequeue = function () {
+          return this.items.shift();
+        };
+        // 3.查看前端元素
+        Queue.prototype.front = function () {
+          return this.items[0];
+        };
+        // 4.查看队列是否为空
+        Queue.prototype.isEmpty = function () {
+          return this.items.length == 0;
+        };
+        // 5.查看队列元素的个数
+        Queue.prototype.size = function () {
+          return this.items.length;
+        };
+        // 6.toString
+        Queue.prototype.toString = function () {
+          var resultString = "";
+          for (var i = 0; i < this.items.length; i++) {
+            resultString += this.items[i] + " ";
+          }
+          return resultString;
+        };
+      }
+      //使用队列
+      // var queue = new Queue();
+
+      // // 将元素加入队列
+      // queue.enqueue("abc");
+      // queue.enqueue("cba");
+      // queue.enqueue("nba");
+      // queue.enqueue("mba");
+      // alert(queue);
+      // //删除元素
+      // queue.dequeue();
+      // alert(queue);
+      // queue.dequeue();
+      // queue.dequeue();
+      // alert(queue);
+
+      // //验证其他方法
+      // alert(queue.front());
+
+      // alert(queue.isEmpty());
+      // alert(queue.size());
+
+      //面试题:击鼓传花
+      function passGame(nameList, num) {
+        //1.创建一个队列结构
+        var queue = new Queue();
+        //2.将所有人依次加入队列中
+        for (var i = 0; i < nameList.length; i++) {
+          queue.enqueue(nameList[i]);
+        }
+        //3.开始数数，不是num的时候重新加入队列的末尾,如果是num这个数字的时候，将其从队列中删除
+
+        //3.1num数字之前的人重新放入到队列末尾
+        while (queue.size() > 1) {
+          for (var i = 0; i < num - 1; i++) {
+            queue.enqueue(queue.dequeue());
+          }
+          //3.2num对应这个人直接从队列删除掉
+          queue.dequeue();
+        }
+
+        //获取剩下的那个人
+        alert(queue.size());
+        var endName = queue.front();
+        alert("最终剩下的人" + endName);
+        //索引
+        return nameList.indexOf(endName);
+      }
+
+      //测试击鼓传花
+      names = ["Lily", "Lucy", "Tom", "Lilei", "why"];
+      alert(passGame(names, 3));
+    </script>
+  </body>
+</html>

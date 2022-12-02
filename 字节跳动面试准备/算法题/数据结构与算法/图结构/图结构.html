@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>图结构</title>
+  </head>
+  <body>
+    <script src="./dict.js"></script>
+    <script src="./queue.js"></script>
+    <script>
+      function Graph() {
+        //属性:顶点(数组)/边(字典)
+        this.vertexes = []; //顶点
+        this.edges = new Dictionay();
+        //方法
+        //添加方法
+        //1.添加顶点的方法
+        Graph.prototype.addVertex = function (v) {
+          this.vertexes.push(v);
+          this.edges.set(v, []);
+        };
+        //2.添加边的方法
+        Graph.prototype.addEdge = function (v, w) {
+          this.edges.get(v)?.push(w);
+          this.edges.get(w)?.push(v);
+        };
+        //3.实现toString方法
+        Graph.prototype.toString = function () {
+          //1.定义字符串,保存最终的结果
+          var resultString = "";
+          //2.遍历所有的顶点,以及顶点对应的边
+          for (var i = 0; i < this.vertexes.length; i++) {
+            resultString += this.vertexes[i] + "->";
+            var vEdges = this.edges.get(this.vertexes[i]);
+            for (var j = 0; j < vEdges.length; j++) {
+              resultString += vEdges[j] + "";
+            }
+            resultString += "\n";
+          }
+          return resultString;
+        };
+        //4.初始化状态颜色
+        Graph.prototype.initializeColor = function () {
+          var colors = [];
+          for (var i = 0; i < this.vertexes.length; i++) {
+            colors[this.vertexes[i]] = "white";
+          }
+          return colors;
+        };
+        //实现广度优先搜索(BFS)
+        Graph.prototype.bfs = function (initV, handler) {
+          //1.初始化颜色
+          var colors = this.initializeColor();
+          //2.创建队列
+          var queue = new Queue();
+          //3.将顶点加入到队列中
+          queue.enqueue(initV);
+          //4.循环从队列中取出元素
+          while (!queue.isEmpty()) {
+            //4.1从队列中取出顶点
+            var v = queue.dequeue();
+            //4.2获取和顶点相连的另外顶点
+            var vList = this.edges.get(v);
+            //4.3将v的颜色设置成灰色
+            colors[v] = "gray";
+            //4.4遍历所有顶点并加入到队列中
+            //先判断是白色再加入到队列中
+            for (var i = 0; i < vList.length; i++) {
+              var e = vList[i];
+              if (colors[e] === "white") {
+                colors[e] = "gray";
+                queue.enqueue(e);
+              }
+            }
+            //4.5访问顶点
+            handler(v);
+            //4.6将顶点设置成黑色
+            colors[v] = "black";
+          }
+        };
+        //实现深度优先搜索(DFS)
+        Graph.prototype.dfs = function (initV, handler) {
+          // 1.初始化颜色
+          var colors = this.initializeColor();
+          // 2.遍历所有的顶点, 开始访问
+          this.dfsVisit(initV, colors, handler);
+        };
+        // dfs的递归调用方法
+        Graph.prototype.dfsVisit = function (u, colors, handler) {
+          // 1.将u的颜色设置为灰色
+          colors[u] = "gray";
+          // 2.处理u顶点
+          handler(u);
+          // 3.u的所有邻接顶点的访问
+          var uAdj = this.edges.get(u);
+          for (var i = 0; i < uAdj.length; i++) {
+            var w = uAdj[i];
+            if (colors[w] === "white") {
+              this.dfsVisit(w, colors, handler);
+            }
+          }
+          // 4.将u设置为黑色
+          colors[u] = "black";
+        };
+      }
+
+      //1.测试代码
+      var g = new Graph();
+      //2.添加顶点
+      var mvVertexes = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
+      for (var i = 0; i < mvVertexes.length; i++) {
+        g.addVertex(mvVertexes[i]);
+      }
+      //3.添加边
+      g.addEdge("A", "B");
+      g.addEdge("A", "C");
+      g.addEdge("A", "D");
+      g.addEdge("C", "D");
+      g.addEdge("C", "G");
+      g.addEdge("D", "G");
+      g.addEdge("D", "H");
+      g.addEdge("B", "E");
+      g.addEdge("B", "F");
+      g.addEdge("E", "I");
+      alert(g);
+
+      //5.测试bfs
+      var result = "";
+      g.bfs(g.vertexes[0], function (v) {
+        result += v + " ";
+      });
+      alert(result);
+      //6.测试dfs
+      result = "";
+      g.dfs(g.vertexes[0], function (v) {
+        result += v + " ";
+      });
+      alert(result);
+    </script>
+  </body>
+</html>

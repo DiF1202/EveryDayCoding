@@ -1,0 +1,52 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-17 19:07:58
+ * @LastEditTime: 2021-10-17 19:09:14
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \css\两栏布局\7.不同于以上html的布局.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            height: 100px;
+        }
+
+        .left {
+            height: 100px;
+            width: 300px;
+            background-color: yellow;
+            float: left;
+            margin-left: -100%
+        }
+
+        .right {
+            width: 100%;
+            float: left;
+            background-color: aqua;
+        }
+
+        .content {
+            margin-left: 300px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left"></div>
+        <div class="right">
+            <div class="content"></div>
+        </div>
+    </div>
+</body>
+
+</html>

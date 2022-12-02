@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //封装二叉搜索树
+      function BinarySearchTree() {
+        //节点
+        function Node(key) {
+          this.key = key;
+          this.left = null;
+          this.right = null;
+        }
+        //属性
+        this.root = null;
+        //方法
+        //1.1插入数据
+        BinarySearchTree.prototype.insert = function (key) {
+          //1.根据key创建节点
+          var newNode = new Node(key);
+
+          //2.判断根节点是否有值
+          if (this.root == null) {
+            this.root = newNode;
+          } else {
+            this.insertNode(this.root, newNode);
+          }
+        };
+        //1.2插入节点的递归方法
+        BinarySearchTree.prototype.insertNode = function (node, newNode) {
+          if (newNode.key < node.key) {
+            //向左查找
+            if (node.left == null) {
+              node.left = newNode;
+            } else {
+              this.insertNode(node.left, newNode);
+            }
+          } else {
+            //向右查找
+            if (node.right == null) {
+              node.right = newNode;
+            } else {
+              this.insertNode(node.right, newNode);
+            }
+          }
+        };
+        //2.1先序遍历
+        BinarySearchTree.prototype.preOrderTraversal = function (handler) {
+          this.preOrderTraversalNode(this.root, handler);
+        };
+        //2.2先序遍历的递归方法
+        BinarySearchTree.prototype.preOrderTraversalNode = function (
+          node,
+          handler
+        ) {
+          if (node != null) {
+            //1.处理经过的节点
+            handler(node.key);
+            //2.处理经过节点的子节点
+            this.preOrderTraversalNode(node.left, handler);
+            //3.处理经过节点的右子节点
+            this.preOrderTraversalNode(node.right, handler);
+          }
+        };
+        //3.1中序遍历
+        BinarySearchTree.prototype.midOrderTraversal = function (handler) {
+          this.midOrderTraversalNode(this.root, handler);
+        };
+        //3.2中序遍历递归
+        BinarySearchTree.prototype.midOrderTraversalNode = function (
+          node,
+          handler
+        ) {
+          if (node !== null) {
+            //1.处理左子树的节点
+            this.midOrderTraversalNode(node.left, handler);
+            //2.处理节点
+            handler(node.key);
+            //3.处理右子树的节点
+            this.midOrderTraversalNode(node.right, handler);
+          }
+        };
+        //4.1后序遍历
+        BinarySearchTree.prototype.postOrderTraversal = function (handler) {
+          this.postOrderTraversalNode(this.root, handler);
+        };
+        //4.2后序遍历递归
+        BinarySearchTree.prototype.postOrderTraversalNode = function (
+          node,
+          handler
+        ) {
+          if (node != null) {
+            //1.查找左子树中给的节点
+            this.postOrderTraversalNode(node.left, handler);
+            //2.查找右子树中的节点
+            this.postOrderTraversalNode(node.right, handler);
+            //3.处理节点
+            handler(node.key);
+          }
+        };
+        //5.1寻找最大值
+        BinarySearchTree.prototype.max = function () {
+          //1.获取根节点
+          var node = this.root;
+          //2.依次像右查找
+          var key = null;
+          while (node != null) {
+            key = node.key;
+            node = node.right;
+          }
+          return key;
+        };
+        //5.2寻找最小值
+        BinarySearchTree.prototype.min = function () {
+          //1.获取根节点
+          var node = this.root;
+          //2.依次像右查找
+          var key = null;
+          while (node != null) {
+            key = node.key;
+            node = node.left;
+          }
+          return key;
+        };
+        //6.搜索特定的key值
+        BinarySearchTree.prototype.search = function (key) {
+          //1.获取根节点
+          var node = this.root;
+          //2.循环搜索key
+          while (node != null) {
+            if (key < node.key) {
+              //左找
+              node = node.left;
+            } else if (key > node.key) {
+              //右找
+              node = node.right;
+            } else {
+              return true;
+            }
+          }
+          return false;
+        };
+        //重点:7.二叉树的删除操作
+        BinarySearchTree.prototype.remove = function (key) {
+          //1.寻找要删除的节点
+          //1.1定义变量保存信息
+          var current = this.root;
+          var parent = null;
+          //左边的孩子还是右边的孩子
+          var isLeftChild = true;
+          //1.2开始寻找删除的节点
+          while (current.key != key) {
+            parent = current;
+            if (key < current.key) {
+              isLeftChild = true;
+              current = current.left;
+            } else {
+              isLeftChild = false;
+              current = current.right;
+            }
+            //某种情况:已经找到最后的节点,依然没找到==key
+            if (current == null) return false;
+          }
+          //2.根据对应的情况删除节点
+          //2.1删除的节点时叶子节点
+          if (current.left == null && current.right == null) {
+            if (current == this.root) {
+              this.root = null;
+            } else if (isLeftChild) {
+              parent.left = null;
+            } else {
+              parent.right = null;
+            }
+          }
+          //2.2删除的节点有一个子节点
+          else if (current.right == null) {
+            if (current == this.root) {
+              this.root = current.left;
+            }
+            if (isLeftChild) {
+              parent.left = current.left;
+            } else {
+              parent.right = current.left;
+            }
+          } else if (current.left == null) {
+            if (current == this.root) {
+              this.root = current.right;
+            }
+            if (isLeftChild) {
+              parent.left = current.right;
+            } else {
+              parent.right = current.right;
+            }
+          }
+          //2.3删除的节点有两个子节点
+          else {
+            //获取后继节点
+            var successor = this.getSuccessor(current);
+            //2.判断是否根节点
+            if (current == this.root) {
+              this.root = successor;
+            } else if (isLeftChild) {
+              parent.left = successor;
+            } else {
+              parent.right = successor;
+            }
+            //3.将删除节点的左子树=current.left
+            successor.left = current.left;
+          }
+        };
+        //找后继的方法
+        BinarySearchTree.prototype.getSuccessor = function (delNode) {
+          //1.定义变量保存后继
+          var successor = delNode;
+          var current = delNode.right;
+          var successorParent = delNode;
+          //2.循环查找
+          while (current != null) {
+            successorParent = successor;
+            successor = current;
+            current = current.left;
+          }
+          //3.判断寻找到的后继节点是否直接就是delNode的right节点
+          if (successor != delNode.right) {
+            successorParent.left = successor.right;
+            successor.right = delNode.right;
+          }
+          return successor;
+        };
+      }
+
+      //测试代码
+      //1.创建BinarySearchTree
+      var bst = new BinarySearchTree();
+
+      //2.插入数据
+      bst.insert(11);
+      bst.insert(7);
+      bst.insert(15);
+      bst.insert(5);
+      bst.insert(3);
+      bst.insert(9);
+      bst.insert(8);
+      bst.insert(10);
+      bst.insert(13);
+      bst.insert(12);
+      bst.insert(14);
+      bst.insert(20);
+      bst.insert(18);
+      bst.insert(25);
+      bst.insert(6);
+
+      //3.测试遍历
+      var resultString = "";
+      bst.preOrderTraversal(function (key) {
+        resultString += key + " ";
+      });
+      alert(resultString);
+      //2.测试中序遍历
+      resultString = "";
+      bst.midOrderTraversal(function (key) {
+        resultString += key + " ";
+      });
+      alert(resultString);
+
+      //3.测试后序遍历
+      resultString = "";
+      bst.postOrderTraversal(function (key) {
+        resultString += key + " ";
+      });
+      alert(resultString);
+
+      //4.测试最值
+      // alert(bst.max());
+      // alert(bst.min());
+
+      //5.测试搜索方法
+      // alert(bst.search(25));
+      // alert(bst.search(24));
+      // alert(bst.search(2));
+
+      //6.测试删除代码
+      bst.remove(9);
+      bst.remove(7);
+      bst.remove(15);
+      resultString = "";
+      bst.postOrderTraversal(function (key) {
+        resultString += key + " ";
+      });
+      alert(resultString);
+    </script>
+  </body>
+</html>

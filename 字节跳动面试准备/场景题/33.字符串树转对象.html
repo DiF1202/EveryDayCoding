@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const obj = {
+      "a": {
+        "b": {
+          "c": 1,
+          "d": 1,
+        },
+      },
+      "e": {
+        "f": 1,
+      },
+    };
+    //写一个函数将其转为
+    const res_obj = {
+      "a.b.c": 1,
+      "a.b.d": 1,
+      "e.f": 1,
+    };
+
+    function fn(obj) {
+      const resObj = {};
+      const res = [];
+      for (key in obj) {
+        backtracking(obj[key], [obj[key]]);
+      }
+      console.log(res);
+      return resObj;
+
+      function backtracking(obj, path) {
+        if (typeof obj !== "object") {
+          res.push(...[path]);
+          return;
+        }
+        for (key in obj) {
+          path.push(key);
+          backtracking(obj[key], path);
+          path.pop();
+        }
+      }
+    }
+
+    console.log(fn(obj));
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-19 15:49:01
+ * @LastEditTime: 2021-10-19 15:51:29
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \浮动\2.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .content{
+            height: 100px;
+            position: relative;
+        }
+        .box1{
+            height: 100px;
+            width: 300px;
+            background-color: red;
+            position: absolute;
+            left: 0;
+        }
+        .box2{
+            height: 100px;
+            background-color: blue;
+            margin-left: 300px;
+            /* position: absolute; */
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="box1"></div>
+        <div class="box2"></div>
+    </div>
+</body>
+</html>

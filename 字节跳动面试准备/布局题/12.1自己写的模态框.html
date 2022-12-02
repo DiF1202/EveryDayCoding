@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模态框modal框</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-container {
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: -1;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .modal-container.show {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        .modal-container .modal {
+            width: 300px;
+            height: 200px;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .showBtn {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="modal-container">
+        <div class="modal">
+            <button id="closeBtn">关闭按钮</button>
+        </div>
+    </div>
+    <div class="showBtn">
+        <button id="showBtn">展开闭按钮</button>
+    </div>
+    <script>
+        const showBtn = document.getElementById('showBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const modalContainer = document.querySelector('.modal-container');
+        const modal = document.querySelector('.modal');
+        showBtn.addEventListener('click', () => {
+            modalContainer.classList.add('show');
+        })
+        closeBtn.addEventListener('click', () => {
+            modalContainer.classList.remove('show');
+        })
+    </script>
+</body>
+
+</html>

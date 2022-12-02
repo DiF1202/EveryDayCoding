@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>手写图片懒加载</title>
+  </head>
+  <style>
+    .container {
+      width: 1000px;
+      margin: 0 auto;
+      background-color: pink;
+    }
+    .container > img {
+      display: block;
+      width: 400px;
+      height: 400px;
+      margin-bottom: 50px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <img src="./img/loading.jpg" data-src="./img/pic.png" />
+      <img src="./img/loading.jpg" data-src="./img/pic.png" />
+      <img src="./img/loading.jpg" data-src="./img/pic.png" />
+      <img src="./img/loading.jpg" data-src="./img/pic.png" />
+      <img src="./img/loading.jpg" data-src="./img/pic.png" />
+      <img src="./img/loading.jpg" data-src="./img/pic.png" />
+    </div>
+    <script>
+      var imgs = document.querySelectorAll("img");
+      function lazyLoad() {
+        var scrollTop =
+          document.body.scrollTop || document.documentElement.scrollTop;
+        var winHeight =
+          window.innerHeight || document.documentElement.clientHeight;
+        for (var i = 0; i < imgs.length; i++) {
+          //视口的高度-图片距离视口顶部的高度
+          const viewPortHeight =
+            winHeight - imgs[i].getBoundingClientRect().top;
+          //如果是个正数的话证明当前视口已经到达可视区当中
+          if (viewPortHeight > 0) {
+            imgs[i].src = imgs[i].getAttribute("data-src");
+          }
+        }
+      }
+      function _debounce(fn, delay) {
+        let timer = null;
+        return function () {
+          let arg = [...arguments];
+          let context = this;
+          if (timer) {
+            clearTimeout(timer);
+            timer = null;
+          }
+          timer = setTimeout(() => {
+            fn.call(context, ...arg);
+          }, delay);
+        };
+      }
+      //在页面加载的时候先加载一次
+      window.onload = lazyLoad;
+      //监听页面的scroll
+      window.addEventListener("scroll", _debounce(lazyLoad, 200));
+      //浏览器窗口大小改变时重新计算
+      window.addEventListener("resize", _debounce(lazyLoad, 200));
+      //window.onscroll = lozyLoad();
+    </script>
+  </body>
+</html>

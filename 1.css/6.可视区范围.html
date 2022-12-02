@@ -1,0 +1,55 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-17 14:02:22
+ * @LastEditTime: 2021-10-17 14:15:45
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \css\6.可视区范围.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            color: black;
+            font-size: 16px;
+        }
+
+        .box1 {
+            height: 1000px;
+            width: 1000px;
+            font-size: 1rem;
+        }
+
+        .box2 {
+            height: 500px;
+            width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1" id="box1">
+        打字
+    </div>
+    <div class="box2" id="box2">
+
+    </div>
+    <script>
+        let box2 = document.getElementById("box2")
+        let box1 = document.getElementById("box1")
+        console.log(box2.offsetTop)
+        console.log(window.innerHeight)
+        console.log(document.documentElement.scrollTop)
+        if (box2.offsetTop < window.innerHeight + document.documentElement.scrollTop) {
+            console.log("出现了")
+        }
+    </script>
+</body>
+
+</html>

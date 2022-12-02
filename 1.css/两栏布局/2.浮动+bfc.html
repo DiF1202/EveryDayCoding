@@ -1,0 +1,45 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-17 17:35:54
+ * @LastEditTime: 2021-10-17 17:37:52
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \css\两栏布局\2.浮动+bfc.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            height: 100px;
+        }
+
+        .left {
+            width: 300px;
+            height: 100px;
+            float: left;
+            background-color: skyblue;
+        }
+
+        .right {
+            height: 100px;
+            background-color: pink;
+            /* 跟上边比就是把margin换了触发bfc */
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+
+</html>

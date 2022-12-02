@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+       quick:实现插入排序
+        @params
+           arr[Array]需要排序的数组
+        @return [Array]排序后的新数组
+      */
+      function quick(arr) {
+        //结束递归,当arr中小于等于一项，则不用处理
+        if (arr.length <= 1) {
+          return arr;
+        }
+        //1.找到数组的中间项,在原有数组中把它移除
+        let middleIndex = Math.floor(arr.length / 2);
+        let middleValue = arr.splice(middleIndex, 1)[0];
+        //2.准备左右两个数组,循环剩下数组中的每项，比当前小的放左，反之放右
+        let arrLeft = [];
+        let arrRight = [];
+        for (let i = 0; i < arr.length; i++) {
+          let item = arr[i];
+          if (arr[i] < middleValue) {
+            arrLeft.push(item);
+          } else {
+            arrRight.push(item);
+          }
+        }
+        //3.递归方式让左右两边的数组持续这样处理,一直到左右两边都排好序为止(最后左+中+右)
+        return quick(arrLeft).concat(middleValue, quick(arrRight));
+      }
+      let arr = [12, 8, 15, 16, 1, 24];
+      arr = quick(arr);
+      console.log(arr);
+    </script>
+  </body>
+</html>

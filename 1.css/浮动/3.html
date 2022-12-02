@@ -1,0 +1,53 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-19 16:18:08
+ * @LastEditTime: 2021-10-19 17:03:23
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \浮动\3.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            height: 5000px;
+        }
+        #box1{
+            position: absolute;
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            margin-bottom: 50px;
+        }
+
+
+        .bo2{
+            margin-top:100px;
+            height: 100px;
+            width: 100px;
+            background-color: blue;
+        }
+
+        .backtotop{
+            height: 100px;
+            width: 100px;
+            background-color: green;
+            position: sticky;
+            top: 0;
+            left: 0;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="bo1" id="box1"></div>
+    <div class="bo2" id="box2"></div>
+    <input type="checkbox" value="" id="checkbox1">
+    <div class="backtotop"></div>
+</body>
+</html>

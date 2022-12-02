@@ -1,0 +1,48 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-17 18:39:19
+ * @LastEditTime: 2021-10-17 18:42:02
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \css\两栏布局\4.定位+定位.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            height: 100px;
+            position: relative;
+        }
+
+        .left {
+            height: 100px;
+            width: 300px;
+            position: absolute;
+            left: 0;
+            background-color: blue;
+        }
+
+        .right {
+            height: 100px;
+            position: absolute;
+            left: 300px;
+            right: 0;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+
+</html>

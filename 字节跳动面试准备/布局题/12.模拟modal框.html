@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title>Modal</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-container {
+            z-index: -1;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            opacity: 0;
+        }
+
+        .modal-container.show {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        .modal {
+            width: 300px;
+            height: 200px;
+            background-color: #fff;
+            transition: all 0.3s;
+            transform: translateY(-200px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            transform: unset;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="modal-container">
+        <div class="modal"><button type="button" id="closeBtn">关闭模态框</button></div>
+    </div>
+    <button type="button" id="showBtn">展示模态框</button>
+    <script>
+        const showBtn = document.getElementById('showBtn');
+        showBtn.addEventListener('click', () => {
+            const modalContainer = document.querySelector('.modal-container');
+            modalContainer.classList.add('show');
+            const modal = document.querySelector('.modal');
+            modal.classList.add('show');
+        });
+
+        const closeBtn = document.getElementById('closeBtn');
+        closeBtn.addEventListener('click', () => {
+            const modalContainer = document.querySelector('.modal-container');
+            modalContainer.classList.remove('show');
+            const modal = document.querySelector('.modal');
+            modal.classList.remove('show');
+        });
+    </script>
+</body>
+
+</html>

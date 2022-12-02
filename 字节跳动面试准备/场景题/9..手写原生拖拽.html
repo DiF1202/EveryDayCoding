@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>手写原生拖拽</title>
+</head>
+<style>
+  .demo {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    background-color: pink;
+  }
+</style>
+
+<body>
+  <div class="demo"></div>
+</body>
+<script>
+  //判断能不能拖动
+  let canDragged = false;
+  let initPosition = [];
+  var demo = document.querySelector(".demo");
+  demo.addEventListener("mousedown", function (e) {
+    canDragged = true;
+    initPosition = [e.clientX, e.clientY];
+  });
+  demo.addEventListener("mousemove", function (e) {
+    //停掉
+    if (!canDragged) {
+      return;
+    }
+    let x = e.clientX,
+      y = e.clientY;
+    // console.log(x, y);
+    //移动的位置
+    let tranX = x - initPosition[0],
+      tranY = y - initPosition[1];
+    //原先的位置
+    let initLeft = demo.style.left == 0 ? 0 : demo.style.left;
+    let initRight = demo.style.top == 0 ? 0 : demo.style.top;
+    console.log(initLeft, initRight);
+    demo.style.left = tranX + parseInt(initLeft) + "px";
+    demo.style.top = tranY + parseInt(initRight) + "px";
+    // console.log(demo.style.left, demo.style.right);
+    //初始位置不停在变
+    initPosition = [x, y];
+  });
+  demo.addEventListener("mouseup", function (e) {
+    canDragged = false;
+  });
+</script>
+
+</html>

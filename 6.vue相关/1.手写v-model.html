@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <button id="myBtn">改变username</button>
+        <input type="text" id="myInput">
+        <h1 id="myTitle"></h1>
+    </div>
+</body>
+<script>
+    let userinfo = {
+        username: '小明',
+    };
+    //开始监控
+    watcher();
+    function watcher() {
+        Object.defineProperty(userinfo, "username", {
+            set(value) {
+                updateDom(value);
+            },
+            get(val) {
+                return val;
+            },
+        });
+    }
+    //更新dom数据
+    function updateDom(value) {
+        document.querySelector('#myInput').value = value;
+        document.querySelector('#myTitle').innerHTML = value;
+    }
+    //给input绑定input事件，实时修改username的值
+    document.querySelector('#myInput').oninput = function (e) {
+        let value = e.target.value;
+        userinfo.username = value;
+    }
+    //给button绑定点击事件，修改username的值
+    document.querySelector('#myBtn').onclick = function () {
+        let value = '小明';
+        userinfo.username = value;
+    }
+</script>
+
+</html>

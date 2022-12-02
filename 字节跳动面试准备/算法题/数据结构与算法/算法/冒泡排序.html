@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Bubble(arr) {
+        for (var i = 0; i < arr.length - 1; i++) {
+          for (var j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j + 1] < arr[j]) {
+              var temp = arr[j];
+              arr[j] = arr[j + 1];
+              arr[j + 1] = temp;
+            }
+          }
+        }
+        return arr;
+      }
+
+      console.log(Bubble([19, 13, 15, 12, 151, 14]));
+      // function bSort(arr) {
+      //   var len = arr.length;
+      //   for (var i = 0; i < len - 1; i++) {
+      //     for (var j = 0; j < len - 1 - i; j++) {
+      //       // 相邻元素两两对比，元素交换，大的元素交换到后面
+      //       if (arr[j] > arr[j + 1]) {
+      //         var temp = arr[j];
+      //         arr[j] = arr[j + 1];
+      //         arr[j + 1] = temp;
+      //       }
+      //     }
+      //   }
+      //   return arr;
+      // }
+
+      // //举个数组
+      // myArr = [20, 18, 27, 19, 35];
+      // //使用函数
+      // console.log(bSort(myArr));
+    </script>
+  </body>
+</html>

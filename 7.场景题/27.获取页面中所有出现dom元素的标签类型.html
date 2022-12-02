@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //其实只要知道如何获取页面中所有元素就能做出来, 通过document.querySelectorAll("*")获取
+        let arr = document.querySelectorAll('*')
+        const set = new Set();
+
+        arr.forEach((item) => {
+            set.add(item.tagName)
+        })
+
+        console.log(Array.from(set))
+
+
+    </script>
+</body>
+
+</html>

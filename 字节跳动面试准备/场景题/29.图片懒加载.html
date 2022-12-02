@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片懒加载</title>
+</head>
+
+<body>
+    <img src="loading.gif" data-src="https://cdn.pixabay.com/photo/2015/09/09/16/05/forest-931706_1280.jpg" alt="">
+    <img src="loading.gif" data-src="https://cdn.pixabay.com/photo/2014/08/01/00/08/pier-407252_1280.jpg" alt="">
+    <img src="loading.gif" data-src="https://cdn.pixabay.com/photo/2014/12/15/17/16/pier-569314_1280.jpg" alt="">
+    <img src="loading.gif" data-src="https://cdn.pixabay.com/photo/2010/12/13/10/09/abstract-2384_1280.jpg" alt="">
+    <img src="loading.gif" data-src="https://cdn.pixabay.com/photo/2015/10/24/11/09/drop-of-water-1004250_1280.jpg" ```
+        通过图片`offsetTop`和`window`的`innerHeight`，`scrollTop`判断图片是否位于可视区域。 ```js 节流函数，保证每200ms触发一次 function throttle(func,
+        wait="200)" {let timer="setTimeout(()" return (...args) if (!timer)> {
+
+    <script>
+
+        // 获取所有img标签
+        var imgs = document.getElementsByTagName("img");
+        // 存储图片已经实现加载的位置，避免每次都从第一张图片开始遍历
+        var n = 0;
+        // 页面载入完毕加载可是区域内的图片
+        lazyload();
+
+        // 监听页面滚动事件
+        window.addEventListener('scroll', throttle(lazyload, 200));
+        // 懒加载函数
+        function lazyload() {
+            // 可见区域高度
+            let visualHeight = window.innerHeight;
+            // 滚动条距离顶部高度，注意要兼容IE浏览器
+            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+            // 从上一个没有加载完毕的img便利到最后的img
+            for (let i = n; i < imgs.length; i++) {
+                // 在视窗范围以内
+                if (img[i].offsetTop < visualHeight + scrollTop) {
+                    if (img[i].getAttribute('src') === "loading.gif") {
+                        // 将src替换为data-src
+                        img[i].src = img[i].getAttribute("data-src");
+                    }
+                    n = i + 1;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

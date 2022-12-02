@@ -1,0 +1,55 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-18 22:07:17
+ * @LastEditTime: 2021-10-18 22:40:45
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \水平垂直居中\3.flex.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent {
+            height: 400px;
+            width: 400px;
+            border: 1px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .son {
+            margin: auto;
+            height: 200px;
+            width: 200px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="son"></div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    console.log("aaaa")
+    function sleep(time) {
+        Promise.resolve("").then(() => {
+            setTimeout(() => {
+                console.log(500)
+            }, time)
+        })
+       
+    }
+    sleep(1000)
+</script>

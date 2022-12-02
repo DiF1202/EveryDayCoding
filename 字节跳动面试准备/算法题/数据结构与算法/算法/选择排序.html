@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+       insert:实现插入排序
+        @params
+           arr[Array]需要排序的数组
+        @return [Array]排序后的新数组
+      */
+      //选择排序
+      function selectSort(arr) {
+        var length = arr.length;
+        //外层循环找所有位置从0找到length-1
+        for (var i = 0; i < length - 1; i++) {
+          var min = i;
+          for (var j = min + 1; j < length; j++) {
+            if (arr[j] < arr[min]) {
+              min = j;
+            }
+          }
+          var temp = arr[i];
+          arr[i] = arr[min];
+          arr[min] = temp;
+        }
+        return arr;
+      }
+      let ary = [12, 8, 24, 16, 1];
+      console.log(selectSort(ary));
+    </script>
+  </body>
+</html>

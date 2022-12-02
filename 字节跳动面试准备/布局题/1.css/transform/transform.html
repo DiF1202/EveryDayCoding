@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img {
+        width: 300px;
+        display: block;
+        margin: auto;
+        margin-top: 200px;
+        transition: transform 2s;
+      }
+
+      img:hover {
+        /* 正值向右 */
+        /* transform: translateX(200px); */
+        /* transform: translateY(-200px); */
+        transform: translate(-200px, 100px);
+      }
+    </style>
+  </head>
+
+  <body>
+    <script>
+      function side(arr) {
+        arr[0] = arr[2];
+      }
+
+      function add(a, b, c = 3) {
+        c = 10;
+        console.log(c);
+        // 传入arguments还是3
+        // 是arguments!!!!! c是argument里面的,还是c
+        console.log('>>', arguments);
+        //c还是3
+        side(arguments);
+        console.log(a)
+        // 13
+        return a + b + c;
+      }
+
+      console.log(add(1, 2, 3));
+      console.log('>>>', window.c); //undefined
+    </script>
+  </body>
+</html>
+
+<!-- 
+    transform:translate(10px,10px);
+ -->

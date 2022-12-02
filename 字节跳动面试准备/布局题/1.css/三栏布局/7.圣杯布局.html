@@ -1,0 +1,64 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-17 19:16:48
+ * @LastEditTime: 2021-10-17 20:11:01
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \css\三栏布局\基本模板.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            height: 200px;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+
+        .main {
+            width: 100%;
+            height: 200px;
+            float: left;
+            background-color: red;
+        }
+
+        .left {
+            margin-left: -100%;
+            height: 200px;
+            float: left;
+            width: 200px;
+            background-color: blue;
+            position: relative;
+            left: -200px;
+        }
+
+        .right {
+            height: 200px;
+            float: left;
+            width: 200px;
+            margin-left: -200px;
+            background-color: green;
+            position: relative;
+            right: -200px
+        }
+
+        /* 都是通过设置负margin来实现元素的排布，不同的就是html结构，双飞翼是在center元素内部又设置了一层inner-center的元素并设置它的
+        左右margin，而非圣杯布局的padding，来排除两边元素的覆盖。所以这两种布局原理基本一样，关键就是在于设置负margin的技巧，和元素浮动的相对定位技巧来实现。 */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+
+</html>

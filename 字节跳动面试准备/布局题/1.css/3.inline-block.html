@@ -1,0 +1,36 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-17 01:04:35
+ * @LastEditTime: 2021-10-17 10:38:16
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \前端面试\css\3.inline-block.html
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>display:inline-block元素之间空隙的产生原因和解决办法</title>
+  <style type="text/css">
+    .parent {
+      display: table;
+    }
+
+    .parent .child {
+      display: inline-block;
+      background-color: #fdfd04;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="parent">
+    <div class="child">child1</div>
+    <div class="child">child2</div>
+  </div>
+</body>
+
+</html>

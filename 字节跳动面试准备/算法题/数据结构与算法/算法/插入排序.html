@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+       insert:实现插入排序
+        @params
+           arr[Array]需要排序的数组
+        @return [Array]排序后的新数组
+      */
+      //插入排序
+      function insert(arr) {
+        //1.准备一个新数组,用来存储第一个数据
+        let handle = [];
+        handle.push(arr[0]);
+        //2.从第二型开始取数据,直到数据被取完
+        for (let i = 1; i < arr.length; i++) {
+          //新取的数据
+          let A = arr[i];
+          //和handle的数据依次比较,从后向前比
+          for (let j = handle.length - 1; j >= 0; j--) {
+            //每一次要比较的数据
+            let B = handle[j];
+            //如果当前数据A比B的大,把A放到B的后面
+            if (A > B) {
+              handle.splice(j + 1, 0, A);
+              break;
+            }
+            //已经比到第一项了,把数据放到最前面
+            if (j === 0) {
+              handle.unshift(A);
+            }
+          }
+        }
+        return handle;
+      }
+
+      //插入排序
+      function insertionSort(arr) {
+        //1.获取数组长度
+        var length = arr.length;
+        //2.外层循环:从第一个位置开始获取数据，向前面局部有序插入
+        for (var i = 1; i < length; i++) {
+          //3.内层循环:获取i位置的元素和前面数据进行比较
+          var temp = arr[i];
+          var j = i;
+          while (arr[i - 1] > temp && j > 0) {
+            arr[j] = arr[j - 1];
+            j--;
+          }
+          //4.将j位置的数据，放置temp
+          arr[j] = temp;
+        }
+        return arr;
+      }
+
+      let ary = [12, 8, 24, 16, 1];
+      // console.log(insert(ary));
+      console.log(insertionSort(ary));
+    </script>
+  </body>
+</html>

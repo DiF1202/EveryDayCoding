@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //write on here:
+        const strArr = ['animal', 'dog', 'cat'];
+        let index = 0
+        Object.defineProperty(window, 'a', {
+            get() {
+                return strArr[index++]
+            }
+        })
+
+        //题目要求，补充代码使得 console.log可以被执行
+        if (a === 'animal' && a === 'dog' && a === 'cat') {
+            console.log("hhhh")
+        }
+    </script>
+</body>
+
+</html>

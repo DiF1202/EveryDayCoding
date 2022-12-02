@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>钟摆</title>
+  </head>
+  <style>
+    .container {
+      width: 100%;
+    }
+
+    .line {
+      width: 20px;
+      height: 400px;
+      background: red;
+      margin: 50px auto;
+      position: relative;
+      animation: swing 5s infinite linear;
+      /* transform-origin: center top;
+        animation: swing 5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear; */
+    }
+
+    .ball {
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      background: blue;
+
+      position: absolute;
+      bottom: -60px;
+      left: -20px;
+    }
+
+    @keyframes swing {
+      0% {
+        transform: rotate(45deg);
+      }
+
+      25% {
+        transform: rotate(0deg);
+      }
+
+      50% {
+        transform: rotate(-45deg);
+      }
+
+      75% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(45deg);
+      }
+    }
+  </style>
+
+  <body>
+    <div class="container">
+      <div class="line">
+        <div class="ball"></div>
+      </div>
+    </div>
+  </body>
+</html>

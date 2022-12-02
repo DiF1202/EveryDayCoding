@@ -1,0 +1,41 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-18 21:56:40
+ * @LastEditTime: 2021-10-18 22:03:08
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \css\水平垂直居中\1.绝对定位+transform.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent{
+            height: 400px;
+            width: 400px;
+            border: 1px solid #000;
+            position: relative;
+        }
+        .son{
+            height: 200px;
+            width: 200px;
+            border: 1px solid #000;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            /* transform: translate(-50%,-50%); */
+            margin-left: -100px;
+            margin-top: -100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="son"></div>
+    </div>
+</body>
+</html>

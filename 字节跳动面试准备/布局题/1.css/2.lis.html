@@ -1,0 +1,45 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-16 12:03:40
+ * @LastEditTime: 2021-10-16 12:04:42
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \前端面试\css\2.lis.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .ul {
+        height: 1000px;
+      }
+      .li {
+        height: 200px;
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="ul">
+      <li class="li"></li>
+      <li class="li"></li>
+      <li class="li"></li>
+      <li class="li"></li>
+      <li class="li"></li>
+    </ul>
+  </body>
+  <script>
+    function b() {
+      a = 10;
+      return;
+      function a() {}
+    }
+    b();
+    // var 挂 window?
+    console.log(a);
+  </script>
+</html>

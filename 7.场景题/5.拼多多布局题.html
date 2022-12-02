@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outerBox {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            padding: 12px;
+            box-sizing: border-box;
+        }
+
+        .innerBox {
+            height: 76px;
+            width: 76px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-rowbox {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .center-rowbox {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .circle {
+            height: 20px;
+            width: 20px;
+            background-color: black;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outerBox">
+        <div class="innerBox">
+            <div class="side-rowbox">
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+            <div class="center-rowbox">
+                <div class="circle"></div>
+            </div>
+            <div class="side-rowbox">
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalSotrage像cookie一样可以有过期时间</title>
+</head>
+
+<body>
+    <script>
+        // // 保存数据到 localStorage
+        // localStorage.setItem('key', 'value');
+
+        // // 从 localStorage 获取数据
+        // let data = localStorage.getItem('key');
+
+        // // 从 localStorage 删除保存的数据
+        // localStorage.removeItem('key');
+
+        // // 从 localStorage 删除所有保存的数据
+        // localStorage.clear();
+
+        // // 获取某个索引的Key
+        // localStorage.key(index)
+        console.log(Object.prototype.toString.call(localStorage))
+        localStorage.__proto__.set = function (key, value, maxAge) {
+            const obj = {
+                data: value,
+                validTime: Date.now() + maxAge
+            }
+            localStorage.setItem(key, JSON.stringify(obj))
+        }
+        localStorage.__proto__.get = function (key) {
+            let val = localStorage.getItem(key);
+            if (!val) return null;
+
+            val = JSON.parse(val);
+
+            if (Date.now() - val.validTime > 0) {
+                localStorage.removeItem(key);
+                return null;
+            } else return val.data
+        }
+    </script>
+</body>
+
+</html>
